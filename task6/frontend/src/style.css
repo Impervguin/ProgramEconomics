@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+html {
+    background-color: #0d1117;
+    text-align: center;
+    color: white;
+}
+
+body {
+    margin: 0;
+    color: white;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+}
+
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""), url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+}
+
+#app {
+    height: 100vh;
+    text-align: center;
+}
+
+.main-container {
+    padding: 1rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    padding: 0.375rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.tab-active {
+    background-color: #238636;
+    color: white;
+}
+
+.tab-inactive {
+    background-color: #21262d;
+    color: #8b949e;
+}
+
+.tab-inactive:hover {
+    background-color: #30363d;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.input-panel {
+    width: 30%;
+    background-color: #161b22;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.results-panel {
+    flex: 1;
+    background-color: #161b22;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.form-field label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #8b949e;
+}
+
+.input {
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 0.25rem;
+    color: #c9d1d9;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    color-scheme: dark;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #238636;
+    box-shadow: 0 0 0 2px rgba(35, 134, 54, 0.3);
+}
+
+.input option {
+    background-color: #21262d;
+    color: #c9d1d9;
+    color-scheme: dark;
+}
+
+select.input {
+    cursor: pointer;
+}
+
+.attr-group {
+    border-top: 1px solid #30363d;
+    padding-top: 0.5rem;
+}
+
+.group-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #58a6ff;
+    margin-bottom: 0.5rem;
+}
+
+.attr-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.calc-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #238636;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calc-btn:hover:not(:disabled) {
+    background-color: #2ea043;
+}
+
+.calc-btn:disabled {
+    background-color: #21262d;
+    cursor: not-allowed;
+}
+
+.results-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.no-result {
+    text-align: center;
+    color: #8b949e;
+    font-size: 0.875rem;
+    padding: 1.5rem 0;
+}
+
+.results-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.result-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #58a6ff;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.result-table {
+    width: 100%;
+    font-size: 0.75rem;
+    border-collapse: collapse;
+}
+
+.result-table th {
+    background-color: #21262d;
+    padding: 0.25rem 0.5rem;
+    text-align: left;
+    font-weight: 500;
+}
+
+.result-table td {
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid #30363d;
+}
+
+.result-table tr:last-child td {
+    border-bottom: none;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.total-row {
+    background-color: #30363d;
+    font-weight: 600;
+}
+
+.empty-tab {
+    background-color: #161b22;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    color: #8b949e;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .flex-row {
+        flex-direction: column;
+    }
+    
+    .input-panel {
+        width: 100%;
+    }
+}
