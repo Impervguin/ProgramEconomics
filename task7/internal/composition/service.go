@@ -56,9 +56,9 @@ func (s *CompositionService) objectivePoints(options []ElementOption, moduleCoun
 		case Simple:
 			points += float64(option.Count) * option.Element.Low()
 		case Complex:
-			points += float64(option.Count) * option.Element.Normal()
-		case Medium:
 			points += float64(option.Count) * option.Element.High()
+		case Medium:
+			points += float64(option.Count) * option.Element.Normal()
 		}
 	}
 	points += 10. * float64(moduleCount)

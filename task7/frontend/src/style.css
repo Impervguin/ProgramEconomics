@@ -1,26 +1,385 @@
+@import "tailwindcss";
+
+/* ===================== */
+/* BASE */
+/* ===================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --gap: 10px;
+    --gap-lg: 16px;
+    --radius: 8px;
+    --border: 1px solid #30363d;
+    --bg-main: #0d1117;
+    --bg-panel: #161b22;
+    --bg-soft: rgba(255,255,255,0.02);
+    --text-main: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #238636;
+    --accent-hover: #2ea043;
+}
+
 html {
-    background-color: rgba(27, 38, 54, 1);
-    text-align: center;
-    color: white;
+    background-color: var(--bg-main);
+    color: var(--text-main);
 }
 
 body {
     margin: 0;
-    color: white;
-    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-}
-
-@font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 400;
-    src: local(""),
-    url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
 }
 
 #app {
     height: 100vh;
+}
+
+/* ===================== */
+/* LAYOUT */
+/* ===================== */
+
+.main-container {
+    padding: var(--gap-lg);
+    min-height: 100vh;
+}
+
+/* FP layout */
+.fp-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    gap: var(--gap-lg);
+    height: 100%;
+}
+
+/* COCOMO */
+.models-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-lg);
+    align-items: stretch;
+}
+
+/* panels */
+.left-panel,
+.right-panel,
+.input-panel,
+.results-panel,
+.model {
+    background-color: var(--bg-panel);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: var(--gap-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+/* ===================== */
+/* TABS */
+/* ===================== */
+
+.tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: var(--gap);
+}
+
+.tab-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.tab-active {
+    background-color: var(--accent);
+    color: white;
+}
+
+.tab-inactive {
+    background-color: #21262d;
+    color: var(--text-muted);
+}
+
+.tab-inactive:hover {
+    background-color: #30363d;
+}
+
+/* ===================== */
+/* FORM */
+/* ===================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    margin-bottom: var(--gap);
+}
+
+.form-field label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: left;
+}
+
+/* ===================== */
+/* FIXED GRID SYSTEM */
+/* ===================== */
+
+/* Основная сетка (макс 3 колонки) */
+.adaptive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+}
+
+@media (max-width: 1200px) {
+    .adaptive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .adaptive-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Для COCOMO */
+.row-2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+}
+
+@media (max-width: 900px) {
+    .row-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .row-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Параметры проекта */
+.attr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+}
+
+@media (max-width: 900px) {
+    .attr-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Языки (макс 4 колонки) */
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+}
+
+@media (max-width: 1200px) {
+    .lang-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .lang-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .lang-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===================== */
+/* INPUTS */
+/* ===================== */
+
+.input {
+    width: 100%;
+    height: 30px;
+    padding: 4px 8px;
+    background-color: #21262d;
+    border: var(--border);
+    border-radius: 6px;
+    color: var(--text-main);
+    font-size: 0.85rem;
+    color-scheme: dark;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(35, 134, 54, 0.3);
+}
+
+select.input {
+    cursor: pointer;
+}
+
+/* ===================== */
+/* GROUP BLOCKS */
+/* ===================== */
+
+.attr-group {
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: var(--gap);
+    background: var(--bg-soft);
+}
+
+.group-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #58a6ff;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+.group-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #58a6ff;
+    margin-bottom: 3px;
+    text-align: left;
+}
+
+
+/* ===================== */
+/* BUTTON */
+/* ===================== */
+
+.calc-btn {
+    width: 100%;
+    height: 34px;
+    background-color: var(--accent);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 8px;
+}
+
+.calc-btn:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+}
+
+.calc-btn:disabled {
+    background-color: #21262d;
+    cursor: not-allowed;
+}
+
+/* ===================== */
+/* RESULTS */
+/* ===================== */
+
+.results-title {
+    font-size: 1rem;
+    font-weight: 700;
     text-align: center;
+}
+
+.results-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-panel);
+    padding-top: 10px;
+}
+
+.no-result {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 20px 0;
+}
+
+/* ===================== */
+/* TABLE */
+/* ===================== */
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: var(--border);
+}
+
+.result-table {
+    width: 100%;
+    min-width: 400px;
+    font-size: 0.75rem;
+    border-collapse: collapse;
+}
+
+.result-table th {
+    background-color: #21262d;
+    padding: 6px;
+    text-align: left;
+}
+
+.result-table td {
+    padding: 6px;
+    border-bottom: 1px solid #30363d;
+}
+
+.result-table tr:last-child td {
+    border-bottom: none;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ===================== */
+/* EMPTY */
+/* ===================== */
+
+.empty-tab {
+    background-color: var(--bg-panel);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media (max-width: 900px) {
+    .fp-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .models-grid {
+        grid-template-columns: 1fr;
+    }
 }

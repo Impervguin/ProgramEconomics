@@ -1,21 +1,35 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'</script>
+import { ref } from 'vue'
+import FunctionalPointsTab from './components/FunctionalPointsTab.vue'
+import CocomoTab from './components/CocomoTab.vue'
+
+const currentTab = ref('functional')
+
+const setTab = (tab) => {
+  currentTab.value = tab
+}
+</script>
 
 <template>
-  <img id="logo" alt="Wails logo" src="./assets/images/logo-universal.png"/>
-  <HelloWorld/>
+  <div class="main-container">
+    <div class="tabs">
+      <button
+        :class="currentTab === 'functional' ? 'tab-btn tab-active' : 'tab-btn tab-inactive'"
+        @click="setTab('functional')"
+      >
+        Функциональные точки
+      </button>
+      <button
+        :class="currentTab === 'cocomo' ? 'tab-btn tab-active' : 'tab-btn tab-inactive'"
+        @click="setTab('cocomo')"
+      >
+        COCOMO II
+      </button>
+    </div>
+    <FunctionalPointsTab v-if="currentTab === 'functional'" />
+    <CocomoTab v-if="currentTab === 'cocomo'" />
+  </div>
 </template>
 
-<style>
-#logo {
-  display: block;
-  width: 50%;
-  height: 50%;
-  margin: auto;
-  padding: 10% 0 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-origin: content-box;
-}
+<style scoped>
 </style>

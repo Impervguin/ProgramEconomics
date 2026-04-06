@@ -9,8 +9,8 @@ type ArchitectureService struct {
 }
 
 type ArchitectureModelDto struct {
-	ArchitectureAttributesConfig *ArchitectureAttributesConfig
-	TeamConfig                   team.TeamConfig
+	ArchitectureAttributes *ArchitectureAttributesConfig
+	TeamConfig             team.TeamConfig
 	// kilo lines of code
 	Kloc       float64
 	AveragePay float64
@@ -31,10 +31,10 @@ const workMultiplier = 2.94
 const timeMultiplier = 3.67
 
 func (s *ArchitectureService) calculateArchitectureModel(dto ArchitectureModelDto) ArchitectureModelResult {
-	arch := mapArchitectureAttributes(dto.ArchitectureAttributesConfig)
+	arch := mapArchitectureAttributes(dto.ArchitectureAttributes)
 	p := dto.TeamConfig.Power()
-	work := workMultiplier *arch.Multiplier() * math.Pow(dto.Kloc, p)
-	time := 3.67 * math.Pow(work, 0.28+0.2*(p-1.01))
+	work := workMultiplier * arch.Multiplier() * math.Pow(dto.Kloc, p)
+	time := timeMultiplier * math.Pow(work, 0.28+0.2*(p-1.01))
 	cost := dto.AveragePay * work
 	teamSize := uint(math.Ceil(work / time))
 	return ArchitectureModelResult{

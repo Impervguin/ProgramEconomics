@@ -25,11 +25,11 @@ func (f *genericFunctionalElement) High() float64 {
 }
 
 var (
-	externalInputElement         = genericFunctionalElement{low: 3, normal: 4, high: 6}
-	externalOutputElement        = genericFunctionalElement{low: 4, normal: 5, high: 6}
-	externalQueryElement         = genericFunctionalElement{low: 3, normal: 4, high: 6}
-	internalLogicalFileElement   = genericFunctionalElement{low: 7, normal: 10, high: 15}
-	externalInterfaceFileElement = genericFunctionalElement{low: 5, normal: 7, high: 10}
+	ExternalInputElement         = genericFunctionalElement{low: 3, normal: 4, high: 6}
+	ExternalOutputElement        = genericFunctionalElement{low: 4, normal: 5, high: 6}
+	ExternalQueryElement         = genericFunctionalElement{low: 3, normal: 4, high: 6}
+	InternalLogicalFileElement   = genericFunctionalElement{low: 7, normal: 10, high: 15}
+	ExternalInterfaceFileElement = genericFunctionalElement{low: 5, normal: 7, high: 10}
 )
 
 type ElementLevel string
